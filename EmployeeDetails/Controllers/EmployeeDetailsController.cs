@@ -41,6 +41,22 @@ namespace EmployeeDetails.Controllers
             var result = _daLayer.GetAllEmployeeDetails();
             return JsonConvert.SerializeObject(result);
         }
+        [HttpPut(nameof(DeleteEmployee))]
+
+        public string DeleteEmployee(UpdateemployeeEntity entity)
+        {
+            try
+            {
+                MySQLConnection manageSQL = new MySQLConnection();
+                var result = _daLayer.DeleteEmployee(entity);
+                return JsonConvert.SerializeObject(result);
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError(ex.Message);
+            }
+            return "false";
+        }
     }
 }
 

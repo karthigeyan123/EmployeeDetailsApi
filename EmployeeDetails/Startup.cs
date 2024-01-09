@@ -61,6 +61,7 @@ namespace EmployeeDetails
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
