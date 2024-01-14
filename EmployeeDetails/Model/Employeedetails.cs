@@ -20,7 +20,7 @@
                 public string AfterTreatment { get; set; }
                 public int TreatmentUnder { get; set; }
                 public int EmployeeCurrentStatus { get; set; }
-                public string Document { get; set; }
+                public string? Document { get; set; }
         }
         public class UpdateemployeeEntity
         {
