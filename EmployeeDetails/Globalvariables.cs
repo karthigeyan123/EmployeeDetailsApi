@@ -2,7 +2,7 @@
 {
     public class Globalvariables
     {
-        public const string ConnectionString = "data source=localhost;Database=employeedetails;Uid=root;Pwd=Karthi@887059;";
+        public const string ConnectionString = "Server=dev-db.c71a1etj7mr8.ap-south-1.rds.amazonaws.com;Database=employeeDetails;Uid=employeeDetails;Pwd=empDetails!;";
         public const string FolderPath = "C://Users//karth//Angular//EmployeeDetails//src//assets//files//";
         
     }
