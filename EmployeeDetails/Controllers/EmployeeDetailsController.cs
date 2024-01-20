@@ -83,11 +83,11 @@ namespace EmployeeDetails.Controllers
         }
 
         [HttpPut("updateEmployeeDetails")]
-        public IActionResult UpdateEmployeeDetails(int employeeId, [FromForm] EmployeeDetailsUpdateModel entity, [FromForm(Name = "files")] IFormFileCollection files)
+        public IActionResult UpdateEmployeeDetails([FromForm] EmployeeDetailsUpdateModel entity, [FromForm(Name = "files")] IFormFileCollection files)
         {
             try
             {
-                var result = _daLayer.UpdateEmployeeDetails(employeeId, entity, files);
+                var result = _daLayer.UpdateEmployeeDetails(entity, files);
 
                 return Ok(new { Success = result, Message = result ? "Employee details updated successfully." : "Failed to update employee details." });
             }

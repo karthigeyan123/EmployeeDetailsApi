@@ -15,8 +15,6 @@ namespace EmployeeDetails.DAL
             {
                 List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
                 DbLayer manageSQL = new DbLayer();
-
-                // Add parameters to the list
                 sqlParameters.Add(new KeyValuePair<string, string>("@inemployeename", entity.EmployeeName));
                 sqlParameters.Add(new KeyValuePair<string, string>("@indepartment", entity.Department));
                 sqlParameters.Add(new KeyValuePair<string, string>("@inaadharnumberasemployeeid", entity.AadharNumber));
@@ -62,7 +60,7 @@ namespace EmployeeDetails.DAL
                 return false;
             }
         }
-        public bool UpdateEmployeeDetails(int employeeId, EmployeeDetailsUpdateModel entity, IFormFileCollection files)
+        public bool UpdateEmployeeDetails(EmployeeDetailsUpdateModel entity, IFormFileCollection files)
         {
             try
             {

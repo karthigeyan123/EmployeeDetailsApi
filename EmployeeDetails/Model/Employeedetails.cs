@@ -16,7 +16,7 @@
             public string HealthIssue { get; set; }
             public int TreatmentUnder { get; set; }
             public int EmployeeCurrentStatus { get; set; }
-            public List<DocumentModel> Documents { get; set; }
+            public List<DocumentModel>? Documents { get; set; }
         }
 
         public class DocumentModel
@@ -39,7 +39,7 @@
             public string HealthIssue { get; set; }
             public int TreatmentUnder { get; set; }
             public int EmployeeCurrentStatus { get; set; }
-            public List<DocumentModelUpdate> Documents { get; set; }
+            public List<DocumentModelUpdate>? Documents { get; set; }
         }
 
         public class DocumentModelUpdate
