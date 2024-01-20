@@ -34,6 +34,8 @@ namespace EmployeeDetails
             });
             services.AddControllers();
             services.AddScoped<EmployeeDetails.DAL.EmployeeDetailsService>();
+            services.AddScoped<EmployeeDetails.DAL.UserMasterService>();
+            services.AddScoped<EmployeeDetails.DAL.LoginService>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

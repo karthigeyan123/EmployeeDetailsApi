@@ -14,10 +14,10 @@
                 public string Address { get; set; }
                 public string EmergencyContactPerson { get; set; }
                 public string EmergencyContactNumber { get; set; }
-                public int Relation { get; set; }
+               // public int Relation { get; set; }
                 public string HealthIssue { get; set; }
-                public string BeforeTreatment { get; set; }
-                public string AfterTreatment { get; set; }
+                //public string BeforeTreatment { get; set; }
+               // public string AfterTreatment { get; set; }
                 public int TreatmentUnder { get; set; }
                 public int EmployeeCurrentStatus { get; set; }
                 public string? Document { get; set; }

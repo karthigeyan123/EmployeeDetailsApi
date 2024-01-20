@@ -22,10 +22,10 @@ namespace EmployeeDetails.DAL
             sqlParameters.Add(new KeyValuePair<string, string>("@inaddressbyaadhar", entity.Address));
             sqlParameters.Add(new KeyValuePair<string, string>("@inemergencycontactpersonname", entity.EmergencyContactPerson));
             sqlParameters.Add(new KeyValuePair<string, string>("@inemergencycontactnumber", entity.EmergencyContactNumber));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inrelation", Convert.ToString (entity.Relation)));
+            //sqlParameters.Add(new KeyValuePair<string, string>("@inrelation", Convert.ToString (entity.Relation)));
             sqlParameters.Add(new KeyValuePair<string, string>("@inhealthissue", entity.HealthIssue));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inbeforetreatment", entity.BeforeTreatment));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inaftertreatment", entity.AfterTreatment));
+            //sqlParameters.Add(new KeyValuePair<string, string>("@inbeforetreatment", entity.BeforeTreatment));
+            //sqlParameters.Add(new KeyValuePair<string, string>("@inaftertreatment", entity.AfterTreatment));
             sqlParameters.Add(new KeyValuePair<string, string>("@intreatmentunder", Convert.ToString (entity.TreatmentUnder)));
             sqlParameters.Add(new KeyValuePair<string, string>("@inemployeecurrentstatus", Convert.ToString (entity.EmployeeCurrentStatus)));
             sqlParameters.Add(new KeyValuePair<string, string>("@indocument", entity.Document));
