@@ -11,28 +11,6 @@ namespace EmployeeDetails.DAL
     {
         public bool SaveEmployeeDetails(EmployeeDetailsModel entity, IFormFileCollection files)
         {
-<<<<<<< HEAD
-            List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
-            DbLayer manageSQL = new DbLayer();
-            sqlParameters.Add(new KeyValuePair<string, string>("@inemployeeid", Convert.ToString(entity.EmployeeId)));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inemployeename", entity.EmployeeName));
-            sqlParameters.Add(new KeyValuePair<string, string>("@indepartment", entity.Department));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inaadharnumberasemployeeid",entity.AadharNumber));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inphonenumber", entity.PhoneNumber));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inalterphonenumber", entity.AlternateNumber));
-            sqlParameters.Add(new KeyValuePair<string, string>("@indateofbirth", entity.DateOfBirth));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inaddressbyaadhar", entity.Address));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inemergencycontactpersonname", entity.EmergencyContactPerson));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inemergencycontactnumber", entity.EmergencyContactNumber));
-            //sqlParameters.Add(new KeyValuePair<string, string>("@inrelation", Convert.ToString (entity.Relation)));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inhealthissue", entity.HealthIssue));
-            //sqlParameters.Add(new KeyValuePair<string, string>("@inbeforetreatment", entity.BeforeTreatment));
-            //sqlParameters.Add(new KeyValuePair<string, string>("@inaftertreatment", entity.AfterTreatment));
-            sqlParameters.Add(new KeyValuePair<string, string>("@intreatmentunder", Convert.ToString (entity.TreatmentUnder)));
-            sqlParameters.Add(new KeyValuePair<string, string>("@inemployeecurrentstatus", Convert.ToString (entity.EmployeeCurrentStatus)));
-            sqlParameters.Add(new KeyValuePair<string, string>("@indocument", entity.Document));
-            return manageSQL.InsertData("insertemployedetails", sqlParameters);
-=======
             try
             {
                 List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
@@ -83,7 +61,6 @@ namespace EmployeeDetails.DAL
                 Console.WriteLine(ex.Message);
                 return false;
             }
->>>>>>> 5d3be88dfd2a6cd78f6ff71abb5f43a2f759b3cb
         }
         public bool UpdateEmployeeDetails(int employeeId, EmployeeDetailsUpdateModel entity, IFormFileCollection files)
         {
