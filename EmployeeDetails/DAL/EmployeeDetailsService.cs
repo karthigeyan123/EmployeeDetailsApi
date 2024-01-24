@@ -116,13 +116,13 @@ namespace EmployeeDetails.DAL
         }
 
 
-        public bool DeleteEmployee(UpdateemployeeEntity entity)
+        public bool DeleteEmployee(DeleteemployeeEntity entity)
         {
             try
             {
                 DbLayer manageSQL = new DbLayer();
                 List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
-                sqlParameters.Add(new KeyValuePair<string, string>("@inemployeeid", Convert.ToString(entity.EmployeeId)));
+                sqlParameters.Add(new KeyValuePair<string, string>("@in_employee_id", Convert.ToString(entity.EmployeeId)));
                 var result = manageSQL.UpdateValues("deleteemployee", sqlParameters);
                 return result;
             }
