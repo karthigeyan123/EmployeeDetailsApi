@@ -45,13 +45,13 @@
         public class DocumentModelUpdate
         {
             public string? DocumentName { get; set; }
-            public string? DocumentPath { get; set; }
+            public string DocumentPath { get; set; }
         }
 
 
-        public class UpdateemployeeEntity
+        public class DeleteemployeeEntity
         {
-            public int? EmployeeId { get; set; }
+            public int EmployeeId { get; set; }
         }
     }
 }
