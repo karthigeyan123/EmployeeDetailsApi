@@ -106,9 +106,11 @@ namespace EmployeeDetails.Controllers
             var result = _daLayer.GetAllEmployeeDetails();
             return JsonConvert.SerializeObject(result);
         }
-        [HttpPut(nameof(DeleteEmployee))]
 
-        public string DeleteEmployee(UpdateemployeeEntity entity)
+
+        [HttpDelete(nameof(DeleteEmployee))]
+
+        public string DeleteEmployee(DeleteemployeeEntity entity)
         {
             try
             {
