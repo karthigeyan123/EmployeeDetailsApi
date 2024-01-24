@@ -26,7 +26,12 @@ namespace EmployeeDetails.Controllers
             {
                 var result = _daLayer.SaveEmployeeDetails(entity, files);
 
-                return Ok(new { Success = result, Message = result ? "Employee details saved successfully." : "Failed to save employee details." });
+                if (!result)
+                {
+                    return StatusCode(500, "Failed to save employee details.");
+                }
+
+                return Ok(new { Success = true, Message = "Employee details saved successfully." });
             }
             catch (Exception ex)
             {
@@ -35,8 +40,9 @@ namespace EmployeeDetails.Controllers
             }
         }
 
+
         [HttpGet]
-        public IActionResult Get(string inemployeeid)
+        public IActionResult Get(int inemployeeid)
         {
             List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
             MySQLConnection manageSQL = new MySQLConnection();
