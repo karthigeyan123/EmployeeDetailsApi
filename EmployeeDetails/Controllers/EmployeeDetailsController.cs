@@ -130,10 +130,11 @@ namespace EmployeeDetails.Controllers
         }
 
 
+
         [HttpPut(nameof(DeleteEmployee))]
 
         public string DeleteEmployee(DeleteemployeeEntity entity)
-        { 
+        {
             try
             {
                 MySQLConnection manageSQL = new MySQLConnection();
@@ -146,6 +147,54 @@ namespace EmployeeDetails.Controllers
             }
             return "false";
         }
+
+        [HttpGet("GetFileContent")]
+        public IActionResult GetFileContent(string fileName)
+        {
+            string folderPath = Globalvariables.FolderPath;
+
+            try
+            {
+                string filePath = Path.Combine(folderPath, fileName);
+                if (System.IO.File.Exists(filePath))
+                {
+                    // Determine the content type based on file extension
+                    string contentType = GetContentType(fileName);
+
+                    // Serve the file directly
+                    return PhysicalFile(filePath, contentType);
+                }
+                else
+                {
+                    return Content("File not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Error reading file: " + ex.Message);
+            }
+        }
+
+        // Helper method to determine the content type based on file extension
+        private string GetContentType(string fileName)
+        {
+            string extension = Path.GetExtension(fileName).ToLowerInvariant();
+
+            switch (extension)
+            {
+                case ".txt":
+                    return "text/plain";
+                case ".pdf":
+                    return "application/pdf";
+                case ".doc":
+                case ".docx":
+                    return "application/msword";
+                // Add more cases for other file types as needed
+                default:
+                    return "application/octet-stream"; // fallback to binary data if the type is unknown
+            }
+        }
+
     }
 }
 
