@@ -52,17 +52,31 @@ namespace EmployeeDetails.Controllers
             if (result != null && result.Tables.Count > 0 && result.Tables[0].Rows.Count > 0)
             {
                 var employeeData = result.Tables[0].Rows[0];
-
-                // Deserialize the "Documents" field as JArray instead of List<dynamic>
                 var documentsJson = employeeData["Documents"].ToString();
+
                 var documentsArray = JArray.Parse(documentsJson);
-                var documents = documentsArray.Select(doc =>
-                    new
-                    {
-                        DocumentId = doc["DocumentId"].ToObject<int>(),
-                        DocumentName = doc["DocumentName"].ToString(),
-                        DocumentPath = doc["DocumentPath"].ToString()
-                    }).ToList();
+
+                var documents = documentsArray
+     .Where(doc =>
+         doc["DocumentName"] != null &&
+         doc["DocumentName"] != null &&
+         doc["DocumentPath"] != null
+     )
+     .Select(doc =>
+         new
+         {
+             DocumentId = doc["DocumentId"] != null ? doc["DocumentName"].ToString() : string.Empty,
+             DocumentName = doc["DocumentName"] != null ? doc["DocumentName"].ToString() : string.Empty,
+             DocumentPath = doc["DocumentPath"] != null ? doc["DocumentPath"].ToString() : string.Empty
+         }
+     )
+     .ToList<dynamic>();
+
+                // If all documents are empty, set documents to an empty array
+                if (documents.All(doc => string.IsNullOrEmpty(doc.DocumentId) && string.IsNullOrEmpty(doc.DocumentName) && string.IsNullOrEmpty(doc.DocumentPath)))
+                {
+                    documents = new List<dynamic>();
+                }
 
                 var employeeDetails = new
                 {
@@ -87,6 +101,8 @@ namespace EmployeeDetails.Controllers
 
             return NotFound();
         }
+
+
 
         [HttpPut("updateEmployeeDetails")]
         public IActionResult UpdateEmployeeDetails([FromForm] EmployeeDetailsUpdateModel entity, [FromForm(Name = "files")] IFormFileCollection files)
@@ -114,10 +130,11 @@ namespace EmployeeDetails.Controllers
         }
 
 
+
         [HttpPut(nameof(DeleteEmployee))]
 
         public string DeleteEmployee(DeleteemployeeEntity entity)
-        { 
+        {
             try
             {
                 MySQLConnection manageSQL = new MySQLConnection();
@@ -130,6 +147,54 @@ namespace EmployeeDetails.Controllers
             }
             return "false";
         }
+
+        [HttpGet("GetFileContent")]
+        public IActionResult GetFileContent(string fileName)
+        {
+            string folderPath = Globalvariables.FolderPath;
+
+            try
+            {
+                string filePath = Path.Combine(folderPath, fileName);
+                if (System.IO.File.Exists(filePath))
+                {
+                    // Determine the content type based on file extension
+                    string contentType = GetContentType(fileName);
+
+                    // Serve the file directly
+                    return PhysicalFile(filePath, contentType);
+                }
+                else
+                {
+                    return Content("File not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Error reading file: " + ex.Message);
+            }
+        }
+
+        // Helper method to determine the content type based on file extension
+        private string GetContentType(string fileName)
+        {
+            string extension = Path.GetExtension(fileName).ToLowerInvariant();
+
+            switch (extension)
+            {
+                case ".txt":
+                    return "text/plain";
+                case ".pdf":
+                    return "application/pdf";
+                case ".doc":
+                case ".docx":
+                    return "application/msword";
+                // Add more cases for other file types as needed
+                default:
+                    return "application/octet-stream"; // fallback to binary data if the type is unknown
+            }
+        }
+
     }
 }
 

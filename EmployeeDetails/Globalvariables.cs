@@ -3,7 +3,7 @@
     public class Globalvariables
     {
         public const string ConnectionString = "Server=dev-db.c71a1etj7mr8.ap-south-1.rds.amazonaws.com;Database=employeeDetails;Uid=employeeDetails;Pwd=empDetails!;";
-        public const string FolderPath = "C://Users//chinn//Vivid//Angular//EmployeeDetails-Ui//src//assets//files//";
-
+        public const string FolderPath = "";
     }
+
 }
