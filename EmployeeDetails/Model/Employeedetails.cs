@@ -47,8 +47,6 @@
             public string? DocumentName { get; set; }
             public string DocumentPath { get; set; }
         }
-
-
         public class DeleteemployeeEntity
         {
             public int EmployeeId { get; set; }
