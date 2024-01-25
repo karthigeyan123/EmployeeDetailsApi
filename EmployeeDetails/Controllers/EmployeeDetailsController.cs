@@ -130,10 +130,10 @@ namespace EmployeeDetails.Controllers
         }
 
 
-        [HttpDelete(nameof(DeleteEmployee))]
+        [HttpPut(nameof(DeleteEmployee))]
 
         public string DeleteEmployee(DeleteemployeeEntity entity)
-        {
+        { 
             try
             {
                 MySQLConnection manageSQL = new MySQLConnection();

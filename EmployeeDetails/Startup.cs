@@ -46,7 +46,7 @@ namespace EmployeeDetails
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EmployeeDetails v1"));
             }
             app.UseCors(options =>
-            options.WithOrigins("http://localhost:4200", "https://103.173.112.23", "https://api.vividtranstech.com", "/index.html", "/login")
+            options.WithOrigins("http://localhost:4200","https://115.97.59.44" , "http://115.97.59.44", "/index.html", "/login")
              .AllowAnyMethod()
              .AllowAnyHeader()
              .AllowCredentials()
