@@ -52,17 +52,31 @@ namespace EmployeeDetails.Controllers
             if (result != null && result.Tables.Count > 0 && result.Tables[0].Rows.Count > 0)
             {
                 var employeeData = result.Tables[0].Rows[0];
-
-                // Deserialize the "Documents" field as JArray instead of List<dynamic>
                 var documentsJson = employeeData["Documents"].ToString();
+
                 var documentsArray = JArray.Parse(documentsJson);
-                var documents = documentsArray.Select(doc =>
-                    new
-                    {
-                        DocumentId = doc["DocumentId"].ToObject<int>(),
-                        DocumentName = doc["DocumentName"].ToString(),
-                        DocumentPath = doc["DocumentPath"].ToString()
-                    }).ToList();
+
+                var documents = documentsArray
+     .Where(doc =>
+         doc["DocumentName"] != null &&
+         doc["DocumentName"] != null &&
+         doc["DocumentPath"] != null
+     )
+     .Select(doc =>
+         new
+         {
+             DocumentId = doc["DocumentId"] != null ? doc["DocumentName"].ToString() : string.Empty,
+             DocumentName = doc["DocumentName"] != null ? doc["DocumentName"].ToString() : string.Empty,
+             DocumentPath = doc["DocumentPath"] != null ? doc["DocumentPath"].ToString() : string.Empty
+         }
+     )
+     .ToList<dynamic>();
+
+                // If all documents are empty, set documents to an empty array
+                if (documents.All(doc => string.IsNullOrEmpty(doc.DocumentId) && string.IsNullOrEmpty(doc.DocumentName) && string.IsNullOrEmpty(doc.DocumentPath)))
+                {
+                    documents = new List<dynamic>();
+                }
 
                 var employeeDetails = new
                 {
@@ -87,6 +101,8 @@ namespace EmployeeDetails.Controllers
 
             return NotFound();
         }
+
+
 
         [HttpPut("updateEmployeeDetails")]
         public IActionResult UpdateEmployeeDetails([FromForm] EmployeeDetailsUpdateModel entity, [FromForm(Name = "files")] IFormFileCollection files)
